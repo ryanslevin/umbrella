@@ -12,6 +12,7 @@ import WeatherStatus from './Components/WeatherStatus/WeatherStatus';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
 class App extends Component {
 
   state = {
@@ -21,25 +22,32 @@ class App extends Component {
     weather: "",
     temperature: "",
     humidity: "",
+    code: "",
     searchTerm: ""
   }
 
+
+  // Requests that the user give access to location
   handleLocationRequest = () => {
-    navigator.geolocation.getCurrentPosition(res => this.locationSuccess(res));
+    navigator.geolocation.getCurrentPosition(res => this.locationRequestSuccess(res));
   }
 
 
-  locationSuccess = (res) => {
+
+  //Called if the location request is successful. Makes a call to the OWM API
+  //and then populates state with the data and logs the data it to console
+  locationRequestSuccess = (res) => {
 
     let coords = res.coords;
 
     console.log(coords.latitude);
     console.log(coords.longitude);
 
+    //Fetches weather data from OWM and populates state with the result
     fetch("http://api.openweathermap.org/data/2.5/weather?lat="
       + coords.latitude + "&lon="
       + coords.longitude
-      + "&APPID=905d22986d9177d5a70d0c09523348d2")
+      + "&APPID="+process.env.REACT_APP_OWM_API_KEY)
       .then(res => res.json())
       .then((data) => {
         this.setState({
@@ -48,24 +56,63 @@ class App extends Component {
           country: data.sys.country,
           weather: data.weather[0].main,
           temperature: data.main.temp_max - 273.15,
-          humidity: data.main.humidity
-        })
+          humidity: data.main.humidity,
+          code: data.weather[0].id
+        });
+        console.log("Data from request");
         console.log(data);
       });
 
   }
 
+  //Updates state when the value in the search box changes
   handleSearchChange = (e) => {
     this.setState({
       searchTerm: e.target.value
     })
   }
 
-
-  doThatGeocode = () => {
+  //Performs a call to the Geocode API and requests data on the city, 
+  //calls the locationSearchSuccess function if successful
+  handleGeocodeSearch = () => {
     console.log(this.state.searchTerm)
     let geocoder = new window.google.maps.Geocoder();
-    geocoder.geocode({ 'address': this.state.searchTerm }, (result) => console.log(result));
+    geocoder.geocode({ 'address': this.state.searchTerm }, (result) => this.locationSearchSuccess(result));
+  }
+
+
+  /*Called if the location search is successful. Makes a call to the OWM API
+  and then populates state with the data and logs the data it to console*/
+  locationSearchSuccess = (res) => {
+
+    console.log(res);
+
+    //Adds the two bounds of each coordinate together, and then divides by 2 to get the middle location
+    let coords = {
+      latitude: (res[0].geometry.bounds.oa.g + res[0].geometry.bounds.oa.h)/2,
+      longitude: (res[0].geometry.bounds.ka.g + res[0].geometry.bounds.ka.h)/2
+    }
+
+
+    //Fetches weather data from OWM and populates state with the result
+    fetch("http://api.openweathermap.org/data/2.5/weather?lat="
+      + coords.latitude + "&lon="
+      + coords.longitude
+      + "&APPID="+process.env.REACT_APP_OWM_API_KEY)
+      .then(res => res.json())
+      .then((data) => {
+        this.setState({
+          hasData: true,
+          city: data.name,
+          country: data.sys.country,
+          weather: data.weather[0].main,
+          temperature: data.main.temp_max - 273.15,
+          humidity: data.main.humidity,
+          code: data.weather[0].id
+        });
+        console.log("Data from search");
+        console.log(data);
+      });
   }
 
   render() {
@@ -77,7 +124,8 @@ class App extends Component {
         city={this.state.city}
         country={this.state.country}
         weather={this.state.weather}
-        temperature={this.state.temperature} />
+        temperature={this.state.temperature}
+        code={this.state.code} />
     }
 
     return (
@@ -92,14 +140,10 @@ class App extends Component {
             <Col>
               <p>Search for location</p>
 
-              <Form>
-                <Form.Group>
-                  <Form.Control onChange={(e) => this.handleSearchChange(e)} type="text" placeholder="Enter your city" />
-                </Form.Group>
-                <Button onClick={() => this.doThatGeocode()} variant="primary">
+                <Form.Control onChange={(e) => this.handleSearchChange(e)} type="text" placeholder="Enter your city" />
+                <Button onClick={() => this.handleGeocodeSearch()} variant="primary">
                   Submit
-  </Button>
-              </Form>
+                </Button>
             </Col>
           </Row>
           {weatherStatus}
