@@ -82,7 +82,7 @@ class App extends Component {
       longitude: (res[0].geometry.bounds.ka.g + res[0].geometry.bounds.ka.h) / 2
     }
     //Fetches weather data from OWM and populates state with the result
-    fetch("http://api.openweathermap.org/data/2.5/weather?lat="
+    fetch("https://api.openweathermap.org/data/2.5/weather?lat="
       + coords.latitude + "&lon="
       + coords.longitude
       + "&APPID=" + process.env.REACT_APP_OWM_API_KEY)
@@ -142,7 +142,7 @@ class App extends Component {
 
   //Takes a city and countryCode param, calls OWM and assigns result to state
   handleTermSearch = (city, countryCode) => {
-    fetch("http://api.openweathermap.org/data/2.5/weather?q="
+    fetch("https://api.openweathermap.org/data/2.5/weather?q="
       + city
       + ","
       + countryCode
