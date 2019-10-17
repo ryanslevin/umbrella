@@ -4,7 +4,6 @@ import './App.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 import Navigation from './Components/Navigation/Navigation';
@@ -13,7 +12,7 @@ import WeatherStatus from './Components/WeatherStatus/WeatherStatus';
 import { faSearchLocation } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -186,14 +185,14 @@ class App extends Component {
       <div className='App'>
         <Navigation />
         <Container className='Content'>
-          <h2>Welcome to Umbrella Advice</h2>
+          <h1>Welcome to UmbrellaAdvice.com</h1>
           <br></br>
           <p>Our journey as an organization began with a single question, a question that has driven us to develop this website as a resource and guide for you.</p>
           <br></br>
           <p>With the use of location-based services and real-time atmospheric condition reporting we are able to help you make one of life's most challening decisions.</p>
           <br></br>
           <br></br>
-          <Row>
+          <Row className='search-container'>
             <Col>
               <p>Find my location</p>
               <FontAwesomeIcon className="search-location-icon" icon={faSearchLocation} onClick={() => this.handleLocationRequest()}/>

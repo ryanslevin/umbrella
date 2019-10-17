@@ -5,6 +5,7 @@ import { faSnowflake } from '@fortawesome/free-solid-svg-icons'
 import { faSun } from '@fortawesome/free-solid-svg-icons'
 import { faCloud } from '@fortawesome/free-solid-svg-icons'
 import { faBolt } from '@fortawesome/free-solid-svg-icons'
+import { faBiohazard } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function WeatherIcon(props) {
@@ -25,7 +26,7 @@ function WeatherIcon(props) {
         weatherIcon = <FontAwesomeIcon className="weather-icon" icon={faSnowflake} />
         advice = "You could take an umbrella, but maybe snowshoes would be a better choice."
     } else if (props.code >= 700 && props.code < 800) {
-        weatherIcon = "Something...atmospheric"
+        weatherIcon = <FontAwesomeIcon className="weather-icon" icon={faBiohazard} />
         advice = "Air isn't looking too good. Forget the umbrella, just stay inside and watch Netflix."
     } else if (props.code === 800) {
         weatherIcon = <FontAwesomeIcon className="weather-icon" icon={faSun} />
@@ -43,6 +44,7 @@ function WeatherIcon(props) {
         {weatherIcon}
         </div>
         <div>
+            <br></br>
         {advice}
         </div>
         </div>
