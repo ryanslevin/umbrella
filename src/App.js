@@ -49,7 +49,7 @@ class App extends Component {
     console.log(coords.longitude);
 
     //Fetches weather data from OWM and populates state with the result
-    fetch("http://api.openweathermap.org/data/2.5/weather?lat="
+    fetch("https://api.openweathermap.org/data/2.5/weather?lat="
       + coords.latitude + "&lon="
       + coords.longitude
       + "&APPID=" + process.env.REACT_APP_OWM_API_KEY)
