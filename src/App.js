@@ -10,7 +10,7 @@ import Form from 'react-bootstrap/Form';
 import Navigation from './Components/Navigation/Navigation';
 import WeatherStatus from './Components/WeatherStatus/WeatherStatus';
 
-import { faSearchIcon, faSearchLocation } from '@fortawesome/free-solid-svg-icons'
+import { faSearchLocation } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
@@ -186,12 +186,11 @@ class App extends Component {
       <div className='App'>
         <Navigation />
         <Container className='Content'>
-          <p>Welcome to Umbrella. Our journey as an organization began with a single question, a question that has driven us to develop this website as a resource and guide for you, our user.</p>
+          <h2>Welcome to Umbrella Advice</h2>
           <br></br>
-          <h2>Do I need an umbrella?</h2>
+          <p>Our journey as an organization began with a single question, a question that has driven us to develop this website as a resource and guide for you.</p>
           <br></br>
-          <p>With the use of location-based services, and real-time atmospheric condition reporting we are able to help you make one of life's most challening decisions.</p>
-          <p>So please, choose one of the options below so we can get started providing you with expert advice.</p>
+          <p>With the use of location-based services and real-time atmospheric condition reporting we are able to help you make one of life's most challening decisions.</p>
           <br></br>
           <br></br>
           <Row>
@@ -222,8 +221,8 @@ class App extends Component {
                           ? 'suggestion-item--active'
                           : 'suggestion-item';
                         const style = suggestion.active
-                          ? { backgroundColor: '#282c34', cursor: 'pointer' }
-                          : { backgroundColor: '#282c34', cursor: 'pointer' };
+                          ? { backgroundColor: 'rgba(255, 255, 255, .1 ', cursor: 'pointer', textDecoration: "underline" }
+                          : { backgroundColor: 'rgba(255, 255, 255, .1 ', cursor: 'pointer' };
                         return (
                           <div
                             {...getSuggestionItemProps(suggestion, {

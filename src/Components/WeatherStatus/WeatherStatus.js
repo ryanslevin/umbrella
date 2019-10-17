@@ -12,7 +12,7 @@ function WeatherStatus(props) {
     return (
         <Container>
                 <h2>{props.city}, {props.country}</h2>
-                <p>{props.temperature.toFixed(0)}°C</p>
+                <h2>{props.temperature.toFixed(0)}°C</h2>
                 <WeatherIcon code={props.code} />
 
         </Container>

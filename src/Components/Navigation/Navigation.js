@@ -4,14 +4,17 @@ import Nav from 'react-bootstrap/Nav';
 
 import Navbar from 'react-bootstrap/Navbar';
 
+import { faUmbrella } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 function Navigation() {
 
 
     return(
 
-        <Navbar bg="dark" variant="dark">
-        <Navbar.Brand>Do I Need an Umbrella?</Navbar.Brand>
+        <Navbar variant="dark">
+        <Navbar.Brand><FontAwesomeIcon icon={faUmbrella} /></Navbar.Brand>
         </Navbar>
 
     )
