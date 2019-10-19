@@ -1,5 +1,7 @@
 import React from 'react';
 
+import '../../App.css';
+
 import { faCloudRain } from '@fortawesome/free-solid-svg-icons'
 import { faSnowflake } from '@fortawesome/free-solid-svg-icons'
 import { faSun } from '@fortawesome/free-solid-svg-icons'
@@ -7,6 +9,8 @@ import { faCloud } from '@fortawesome/free-solid-svg-icons'
 import { faBolt } from '@fortawesome/free-solid-svg-icons'
 import { faBiohazard } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function WeatherIcon(props) {
 
@@ -45,7 +49,7 @@ function WeatherIcon(props) {
         </div>
         <div>
             <br></br>
-        {advice}
+        <p>{advice}</p>
         </div>
         </div>
     )
