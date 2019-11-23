@@ -60,7 +60,7 @@ class App extends Component {
           <br></br>
           <p>Our journey as an organization began with a single question, a question that has driven us to develop this website as a resource and guide for you.</p>
           <br></br>
-          <p>With the use of location-based services and real-time atmospheric condition reporting we are able to help you make one of life's most challening decisions.</p>
+          <p>With the use of location-based services and real-time atmospheric condition reporting we are able to help you make one of life's most challenging decisions.</p>
           <br></br>
           <br></br>
           <Row>
