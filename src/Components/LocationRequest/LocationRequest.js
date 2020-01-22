@@ -1,12 +1,11 @@
 import React from 'react';
 
-import { faSearchLocation } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearchLocation } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import '../../App.css';
 
-function LocationRequest(props) {
-
+const LocationRequest = ({ handleWeatherData }) => {
 
     // Requests that the user give access to location
     const handleLocationRequest = () => {
@@ -26,7 +25,7 @@ function LocationRequest(props) {
             + coords.longitude
             + "&APPID=" + process.env.REACT_APP_OWM_API_KEY)
             .then(result => result.json())
-            .then(data => props.handleWeatherData(data));
+            .then(data => handleWeatherData(data));
     }
 
     return (
@@ -34,7 +33,7 @@ function LocationRequest(props) {
             <p>Find my location</p>
             <FontAwesomeIcon className="search-location-icon" icon={faSearchLocation} onClick={() => handleLocationRequest()} />
         </>
-    )
+    );
 }
 
 export default LocationRequest;

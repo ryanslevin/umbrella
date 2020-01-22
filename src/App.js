@@ -12,7 +12,6 @@ import LocationSearch from './Components/LocationSearch/LocationSearch';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
 class App extends Component {
 
   state = {

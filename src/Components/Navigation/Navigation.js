@@ -4,12 +4,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Navbar from 'react-bootstrap/Navbar';
 
-import { faUmbrella } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUmbrella } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-
-function Navigation() {
-
+const Navigation = () => {
 
     return(
 
@@ -17,8 +15,7 @@ function Navigation() {
         <Navbar.Brand><FontAwesomeIcon icon={faUmbrella} /></Navbar.Brand>
         </Navbar>
 
-    )
-    
+    );
 }
 
 
